@@ -1,0 +1,40 @@
+<!-- templates/base.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>喫茶店在庫管理</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    nav { margin-bottom: 10px; }
+    .flash { background: #ffc; padding: 8px; margin-bottom: 10px; border: 1px solid #cc9;}
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 6px; text-align: left; }
+  </style>
+</head>
+<body>
+  <nav>
+    {% if session.username %}
+      <strong>{{ session.username }}</strong> |
+      <a href="{{ url_for('products') }}">商品一覧</a> |
+      <a href="{{ url_for('transaction') }}">入出庫</a> |
+      <a href="{{ url_for('logout') }}">ログアウト</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">ログイン</a> |
+      <a href="{{ url_for('register') }}">登録</a>
+    {% endif %}
+  </nav>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash">
+      {% for msg in messages %}
+        <div>{{ msg }}</div>
+      {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  {% block body %}{% endblock %}
+</body>
+</html>

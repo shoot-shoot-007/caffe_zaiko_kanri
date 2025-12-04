@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>在庫履歴</h2>
+<table>
+  <tr><th>日時</th><th>数量</th><th>ユーザー</th></tr>
+  {% for r in rows %}
+  <tr>
+    <td>{{ r.datetime }}</td>
+    <td>{{ r.quantity }}</td>
+    <td>{{ r.username or "不明" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

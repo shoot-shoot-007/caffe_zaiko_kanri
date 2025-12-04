@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>商品一覧</h2>
+<table>
+  <tr><th>ID</th><th>商品名</th><th>カテゴリ</th><th>在庫</th><th>最小在庫</th><th>履歴</th></tr>
+  {% for p in products %}
+  <tr>
+    <td>{{ p.product_id }}</td>
+    <td>{{ p.product_name }}</td>
+    <td>{{ p.category_name or "-" }}</td>
+    <td>{{ p.stock_quantity }}</td>
+    <td>{{ p.min_stock }}</td>
+    <td><a href="{{ url_for('history', product_id=p.product_id) }}">履歴</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

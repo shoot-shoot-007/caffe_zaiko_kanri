@@ -1,0 +1,10 @@
+<!-- templates/register.html -->
+{% extends "base.html" %}
+{% block body %}
+<h2>ユーザー登録</h2>
+<form method="post">
+  <label>ユーザ名: <input name="username" required></label><br><br>
+  <label>パスワード: <input name="password" type="password" required></label><br><br>
+  <button type="submit">登録</button>
+</form>
+{% endblock %}

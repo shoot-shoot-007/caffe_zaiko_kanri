@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>入出庫登録</h2>
+<form method="post">
+  <label>商品:
+    <select name="product_id">
+      {% for p in products %}
+        <option value="{{ p.product_id }}">{{ p.product_name }} (在庫: {{ p.stock_quantity }})</option>
+      {% endfor %}
+    </select>
+  </label><br><br>
+
+  <label>種類:
+    <label><input type="radio" name="direction" value="in" checked> 入庫</label>
+    <label><input type="radio" name="direction" value="out"> 出庫</label>
+  </label><br><br>
+
+  <label>数量: <input name="quantity" type="number" min="1" value="1"></label><br><br>
+
+  <button type="submit">登録</button>
+</form>
+{% endblock %}
