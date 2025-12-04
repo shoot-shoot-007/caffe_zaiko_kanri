@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>{{ product.product_name }} の在庫をセット</h2>
+<p>現在の在庫: {{ product.stock_quantity }}</p>
+
+<form method="post">
+  <label>新しい在庫数: <input name="new_stock" type="number" value="{{ product.stock_quantity }}" min="0"></label><br><br>
+  <button type="submit">在庫をセットして履歴に記録</button>
+</form>
+{% endblock %}

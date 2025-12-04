@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block body %}
+<h2>商品登録</h2>
+<form method="post">
+  <label>商品名: <input name="product_name" required></label><br><br>
+
+  <label>カテゴリ（既存）:
+    <select name="category_select">
+      <option value="none">-- 選択しない --</option>
+      {% for c in categories %}
+        <option value="{{ c.rowid }}">{{ c.category_name }}</option>
+      {% endfor %}
+    </select>
+  </label><br><br>
+
+  <label>新しいカテゴリ（あれば入力）: <input name="category_new"></label><br><br>
+
+  <label>初期在庫: <input name="initial_stock" type="number" value="0" min="0"></label><br><br>
+
+  <label>最小在庫（警告用）: <input name="min_stock" type="number" value="0" min="0"></label><br><br>
+
+  <button type="submit">登録</button>
+</form>
+{% endblock %}

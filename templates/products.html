@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block body %}
 <h2>商品一覧</h2>
+<p><a href="{{ url_for('add_product') }}">＋ 新しい商品を登録</a></p>
 <table>
-  <tr><th>ID</th><th>商品名</th><th>カテゴリ</th><th>在庫</th><th>最小在庫</th><th>履歴</th></tr>
+  <tr><th>ID</th><th>商品名</th><th>カテゴリ</th><th>在庫</th><th>最小在庫</th><th>履歴</th><th>編集</th></tr>
   {% for p in products %}
   <tr>
     <td>{{ p.product_id }}</td>
@@ -11,6 +12,7 @@
     <td>{{ p.stock_quantity }}</td>
     <td>{{ p.min_stock }}</td>
     <td><a href="{{ url_for('history', product_id=p.product_id) }}">履歴</a></td>
+    <td><a href="{{ url_for('set_stock', product_id=p.product_id) }}">在庫編集</a></td>
   </tr>
   {% endfor %}
 </table>

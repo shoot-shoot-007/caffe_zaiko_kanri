@@ -1,6 +1,9 @@
 # ローカルのSQLiteデータベースを Git 管理から除外
 caffe_management_db.db
 
-# 仮想環境
+# 仮想環境（dot-prefixed と plain の両方をカバー）
+.venv/
 venv/
+
+# 環境変数ファイル
 .env
