@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>ログイン</h2>
-<form method="post">
-  <label>ユーザ名: <input name="username"></label><br><br>
-  <label>パスワード: <input name="password" type="password"></label><br><br>
-  <button type="submit">ログイン</button>
-</form>
+<div class="card" style="max-width:480px;">
+  <h2>ログイン</h2>
+  <form method="post" style="margin-top:12px;">
+    <div class="form-row">
+      <label>ユーザ名</label>
+      <input name="username" required>
+    </div>
+    <div class="form-row">
+      <label>パスワード</label>
+      <input name="password" type="password" required>
+    </div>
+    <div class="form-actions">
+      <button class="btn" type="submit">ログイン</button>
+      <a class="btn secondary" href="{{ url_for('register') }}">新規登録</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

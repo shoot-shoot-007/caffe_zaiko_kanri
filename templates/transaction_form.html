@@ -1,22 +1,33 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>入出庫登録</h2>
-<form method="post">
-  <label>商品:
-    <select name="product_id">
-      {% for p in products %}
-        <option value="{{ p.product_id }}">{{ p.product_name }} (在庫: {{ p.stock_quantity }})</option>
-      {% endfor %}
-    </select>
-  </label><br><br>
+<div class="card">
+  <h2>入出庫登録</h2>
 
-  <label>種類:
-    <label><input type="radio" name="direction" value="in" checked> 入庫</label>
-    <label><input type="radio" name="direction" value="out"> 出庫</label>
-  </label><br><br>
+  <form method="post" style="margin-top:12px;">
+    <div class="form-row">
+      <label>商品</label>
+      <select name="product_id" required>
+        {% for p in products %}
+          <option value="{{ p.product_id }}">{{ p.product_name }} (在庫: {{ p.stock_quantity }})</option>
+        {% endfor %}
+      </select>
+    </div>
 
-  <label>数量: <input name="quantity" type="number" min="1" value="1"></label><br><br>
+    <div class="form-row">
+      <label>種類</label>
+      <label style="margin-right:12px;"><input type="radio" name="direction" value="in" checked> 入庫</label>
+      <label><input type="radio" name="direction" value="out"> 出庫</label>
+    </div>
 
-  <button type="submit">登録</button>
-</form>
+    <div class="form-row">
+      <label>数量</label>
+      <input name="quantity" type="number" min="1" value="1" required>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn" type="submit">登録</button>
+      <a href="{{ url_for('products') }}" class="btn secondary">キャンセル</a>
+    </div>
+  </form>
+</div>
 {% endblock %}

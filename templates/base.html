@@ -1,40 +1,51 @@
-<!-- templates/base.html -->
 <!doctype html>
 <html>
 <head>
   <meta charset="utf-8">
   <title>喫茶店在庫管理</title>
-  <style>
-    body { font-family: sans-serif; margin: 20px; }
-    nav { margin-bottom: 10px; }
-    .flash { background: #ffc; padding: 8px; margin-bottom: 10px; border: 1px solid #cc9;}
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 6px; text-align: left; }
-  </style>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-  <nav>
-    {% if session.username %}
-      <strong>{{ session.username }}</strong> |
-      <a href="{{ url_for('products') }}">商品一覧</a> |
-      <a href="{{ url_for('transaction') }}">入出庫</a> |
-      <a href="{{ url_for('logout') }}">ログアウト</a>
-    {% else %}
-      <a href="{{ url_for('login') }}">ログイン</a> |
-      <a href="{{ url_for('register') }}">登録</a>
-    {% endif %}
-  </nav>
-
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <div class="flash">
-      {% for msg in messages %}
-        <div>{{ msg }}</div>
-      {% endfor %}
+  <div class="container">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">珈</div>
+        <div>
+          <h1>喫茶店在庫管理</h1>
+          <div class="kv">静寂の中で楽しむ一杯の至福</div>
+        </div>
       </div>
-    {% endif %}
-  {% endwith %}
 
-  {% block body %}{% endblock %}
+      <nav class="nav">
+        {% if session.username %}
+          <div class="kv">ようこそ、<strong>{{ session.username }}</strong></div>
+          <a class="primary" href="{{ url_for('products') }}">商品一覧</a>
+          <a href="{{ url_for('transaction') }}">入出庫</a>
+          <a href="{{ url_for('add_product') }}">商品登録</a>
+          <a href="{{ url_for('logout') }}" class="ghost">ログアウト</a>
+        {% else %}
+          <a href="{{ url_for('login') }}">ログイン</a>
+          <a href="{{ url_for('register') }}">登録</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash card">
+        {% for msg in messages %}
+          <div>{{ msg }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <main>
+      {% block body %}{% endblock %}
+    </main>
+
+    <footer class="footer-note">© 喫茶店 在庫管理</footer>
+  </div>
 </body>
 </html>

@@ -1,0 +1,159 @@
+/* style.css - 喫茶店在庫管理アプリ用スタイル
+   シンプルで落ち着いたカフェ風の配色・レスポンシブ対応 */
+:root{
+  --bg: #faf7f4;
+  --card: #ffffff;
+  --muted: #6b6b6b;
+  --accent: #8b5e3c;   /* コーヒーブラウン */
+  --accent-2: #c89b6e; /* ライトブラウン */
+  --danger: #d9534f;
+  --success: #3c8d40;
+  --border: #e6e1de;
+  --shadow: rgba(23,20,17,0.06);
+  --radius: 10px;
+  --max-width: 1100px;
+  font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "Noto Sans JP", "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; padding:0; background:var(--bg); color:#222; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+a { color:var(--accent); text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+/* Layout container */
+.container {
+  width: 92%;
+  max-width: var(--max-width);
+  margin: 28px auto;
+  background: transparent;
+}
+
+/* Header / nav */
+.header {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:20px;
+}
+.brand {
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+.brand .logo {
+  width:48px; height:48px; border-radius:8px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 6px 14px var(--shadow);
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:700; font-size:18px;
+}
+.brand h1 {
+  margin:0; font-size:18px; letter-spacing:0.2px;
+}
+.nav {
+  display:flex; gap:12px; align-items:center;
+}
+.nav a, .nav button {
+  padding:8px 12px; border-radius:8px; border:1px solid transparent;
+  background:transparent; cursor:pointer; font-size:14px;
+}
+.nav a.primary, .nav button.primary {
+  background: linear-gradient(180deg, rgba(139,94,60,0.10), rgba(200,155,110,0.06));
+  border:1px solid rgba(139,94,60,0.12);
+  color:var(--accent);
+}
+
+/* Flash messages */
+.flash {
+  background: #fff7e9;
+  border:1px solid #f1d7b7;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:18px;
+  color:#5a3d24;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 18px var(--shadow);
+  padding:18px;
+  border:1px solid var(--border);
+}
+
+/* Table */
+.table-wrap { overflow-x:auto; margin-top:12px; }
+table { width:100%; border-collapse:collapse; min-width: 600px; }
+th, td {
+  padding:10px 12px;
+  text-align:left;
+  border-bottom: 1px solid #f0eeec;
+  vertical-align: middle;
+  font-size:14px;
+}
+th {
+  background: linear-gradient(180deg, #fbf8f6, #fbf8f6);
+  color:var(--muted);
+  font-weight:600;
+  font-size:13px;
+}
+tr:hover td { background: #fffaf6; }
+
+/* Buttons */
+.btn {
+  display:inline-block; padding:8px 12px; border-radius:8px; border:1px solid transparent;
+  background:var(--accent); color:#fff; font-weight:600; font-size:14px;
+  text-decoration:none;
+}
+.btn.secondary {
+  background:transparent; color:var(--accent); border:1px solid rgba(139,94,60,0.12);
+}
+.btn.ghost {
+  background:transparent; color:var(--muted); border:1px solid #eee;
+}
+.small { padding:6px 8px; font-size:13px; }
+
+/* Forms */
+form { margin:0; }
+label { display:block; font-size:14px; color:var(--muted); margin-bottom:6px; }
+input[type="text"], input[type="password"], input[type="number"], select, textarea {
+  width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border);
+  background:#fff; font-size:14px; outline:none;
+}
+input:focus, select:focus, textarea:focus { box-shadow:0 6px 14px rgba(139,94,60,0.06); border-color: rgba(139,94,60,0.18); }
+
+/* Form layout helpers */
+.form-grid { display:grid; gap:12px; grid-template-columns: 1fr 1fr; align-items:start; }
+.form-row { margin-bottom:12px; }
+.form-actions { margin-top:14px; display:flex; gap:10px; justify-content:flex-start; }
+
+/* Small UI */
+.kv { color:var(--muted); font-size:13px; }
+.badge { padding:4px 8px; border-radius:999px; font-size:13px; display:inline-block; }
+
+/* Low stock highlight */
+.low-stock { background: linear-gradient(90deg,#ffecec,#fff6f6); color: var(--danger); font-weight:700; }
+.low-stock .badge { background: var(--danger); color:#fff; }
+
+/* Quantity positive / negative */
+.qty-plus { color:var(--success); font-weight:700; }
+.qty-minus { color:var(--danger); font-weight:700; }
+
+/* Responsive */
+@media (max-width: 800px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .brand h1 { font-size:16px; }
+  th, td { font-size:13px; padding:8px; }
+}
+
+/* Utility */
+.text-right { text-align:right; }
+.mt-8 { margin-top:8px; }
+.mt-16 { margin-top:16px; }
+.mb-8 { margin-bottom:8px; }
+
+/* Footer note */
+.footer-note { margin-top:18px; font-size:13px; color:var(--muted); }

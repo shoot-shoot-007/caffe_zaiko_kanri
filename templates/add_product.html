@@ -1,24 +1,46 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>商品登録</h2>
-<form method="post">
-  <label>商品名: <input name="product_name" required></label><br><br>
+<div class="card">
+  <h2>商品登録</h2>
 
-  <label>カテゴリ（既存）:
-    <select name="category_select">
-      <option value="none">-- 選択しない --</option>
-      {% for c in categories %}
-        <option value="{{ c.rowid }}">{{ c.category_name }}</option>
-      {% endfor %}
-    </select>
-  </label><br><br>
+  <form method="post" style="margin-top:12px;">
+    <div class="form-row">
+      <label>商品名</label>
+      <input name="product_name" required>
+    </div>
 
-  <label>新しいカテゴリ（あれば入力）: <input name="category_new"></label><br><br>
+    <div class="form-row form-grid">
+      <div>
+        <label>カテゴリ（既存）</label>
+        <select name="category_select">
+          <option value="none">-- 選択しない --</option>
+          {% for c in categories %}
+            <option value="{{ c.rowid }}">{{ c.category_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
 
-  <label>初期在庫: <input name="initial_stock" type="number" value="0" min="0"></label><br><br>
+      <div>
+        <label>新しいカテゴリ（あれば入力）</label>
+        <input name="category_new" placeholder="例：ドリンク、食材">
+      </div>
+    </div>
 
-  <label>最小在庫（警告用）: <input name="min_stock" type="number" value="0" min="0"></label><br><br>
+    <div class="form-row form-grid">
+      <div>
+        <label>初期在庫</label>
+        <input name="initial_stock" type="number" value="0" min="0">
+      </div>
+      <div>
+        <label>最小在庫（警告用）</label>
+        <input name="min_stock" type="number" value="0" min="0">
+      </div>
+    </div>
 
-  <button type="submit">登録</button>
-</form>
+    <div class="form-actions">
+      <button class="btn" type="submit">登録</button>
+      <a class="btn secondary" href="{{ url_for('products') }}">キャンセル</a>
+    </div>
+  </form>
+</div>
 {% endblock %}
