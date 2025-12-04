@@ -1,0 +1,2 @@
+# ローカルのSQLiteデータベースを Git 管理から除外
+caffe_management_db.db
