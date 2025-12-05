@@ -1,6 +1,3 @@
-# ローカルのSQLiteデータベースを Git 管理から除外
-caffe_management_db.db
-
 # 仮想環境（dot-prefixed と plain の両方をカバー）
 .venv/
 venv/
@@ -9,3 +6,11 @@ venv/
 .env
 
 __pycache__/
+
+# SQLite DB
+caffe_management_db.db
+caffe_management_db.db.bak
+*.db
+*.db.bak
+__pycache__/
+*.pyc
