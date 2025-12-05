@@ -1,19 +1,38 @@
 {% extends "base.html" %}
 {% block body %}
-<h2>商品一覧</h2>
-<p><a href="{{ url_for('add_product') }}">＋ 新しい商品を登録</a></p>
-<table>
-  <tr><th>ID</th><th>商品名</th><th>カテゴリ</th><th>在庫</th><th>最小在庫</th><th>履歴</th><th>編集</th></tr>
-  {% for p in products %}
-  <tr>
-    <td>{{ p.product_id }}</td>
-    <td>{{ p.product_name }}</td>
-    <td>{{ p.category_name or "-" }}</td>
-    <td>{{ p.stock_quantity }}</td>
-    <td>{{ p.min_stock }}</td>
-    <td><a href="{{ url_for('history', product_id=p.product_id) }}">履歴</a></td>
-    <td><a href="{{ url_for('set_stock', product_id=p.product_id) }}">在庫編集</a></td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="card">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-semibold">商品一覧</h2>
+    <a class="btn" href="{{ url_for('add_product') }}">＋ 新しい商品を登録</a>
+  </div>
+
+  <div class="table-wrap mt-4 overflow-x-auto">
+    <table class="min-w-full divide-y" role="table">
+      <thead>
+        <tr class="text-left">
+          <th class="px-3 py-2 text-sm">ID</th>
+          <th class="px-3 py-2 text-sm">商品名</th>
+          <th class="px-3 py-2 text-sm">カテゴリ</th>
+          <th class="px-3 py-2 text-sm">在庫</th>
+          <th class="px-3 py-2 text-sm">最小在庫</th>
+          <th class="px-3 py-2 text-sm">履歴</th>
+          <th class="px-3 py-2 text-sm">編集</th>
+        </tr>
+      </thead>
+      <tbody class="bg-white divide-y">
+      {% for p in products %}
+        <tr class="hover:bg-[var(--card)]">
+          <td class="px-3 py-2 text-sm">{{ p.product_id }}</td>
+          <td class="px-3 py-2 text-sm">{{ p.product_name }}</td>
+          <td class="px-3 py-2 text-sm">{{ p.category_name or "-" }}</td>
+          <td class="px-3 py-2 text-sm">{{ p.stock_quantity }}</td>
+          <td class="px-3 py-2 text-sm">{{ p.min_stock }}</td>
+          <td class="px-3 py-2 text-sm"><a href="{{ url_for('history', product_id=p.product_id) }}">履歴</a></td>
+          <td class="px-3 py-2 text-sm"><a href="{{ url_for('set_stock', product_id=p.product_id) }}">在庫編集</a></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}

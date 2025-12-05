@@ -7,3 +7,5 @@ venv/
 
 # 環境変数ファイル
 .env
+
+__pycache__/

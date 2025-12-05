@@ -1,22 +1,28 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="card">
-  <h2>在庫履歴</h2>
-  <div class="table-wrap mt-8">
-    <table>
-      <thead><tr><th>日時</th><th>数量</th><th>ユーザー</th></tr></thead>
-      <tbody>
+  <h2 class="text-lg font-semibold">在庫履歴</h2>
+  <div class="table-wrap mt-4 overflow-x-auto">
+    <table class="min-w-full divide-y">
+      <thead>
+        <tr>
+          <th class="px-3 py-2 text-sm">日時</th>
+          <th class="px-3 py-2 text-sm">数量</th>
+          <th class="px-3 py-2 text-sm">ユーザー</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y bg-white">
       {% for r in rows %}
         <tr>
-          <td>{{ r.datetime }}</td>
-          <td class="{{ 'qty-plus' if r.quantity>0 else 'qty-minus' }}">{{ r.quantity }}</td>
-          <td>{{ r.username or "不明" }}</td>
+          <td class="px-3 py-2 text-sm">{{ r.datetime }}</td>
+          <td class="px-3 py-2 text-sm {{ 'qty-plus' if r.quantity>0 else 'qty-minus' }}">{{ r.quantity }}</td>
+          <td class="px-3 py-2 text-sm">{{ r.username or "不明" }}</td>
         </tr>
       {% endfor %}
       </tbody>
     </table>
   </div>
-  <div class="footer-note">※ プラスは入庫、マイナスは出庫です</div>
+  <div class="footer-note mt-4">※ プラスは入庫、マイナスは出庫です</div>
 </div>
 {% endblock %}
 
